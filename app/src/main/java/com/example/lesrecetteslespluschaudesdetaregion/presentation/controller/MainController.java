@@ -3,7 +3,7 @@ package com.example.lesrecetteslespluschaudesdetaregion.presentation.controller;
 import android.content.SharedPreferences;
 
 import com.example.lesrecetteslespluschaudesdetaregion.Constants;
-import com.example.lesrecetteslespluschaudesdetaregion.data.RecipeAPI;
+import com.example.lesrecetteslespluschaudesdetaregion.Singletons;
 import com.example.lesrecetteslespluschaudesdetaregion.presentation.model.Recipes;
 import com.example.lesrecetteslespluschaudesdetaregion.presentation.model.RestRecipesResponse;
 import com.example.lesrecetteslespluschaudesdetaregion.presentation.view.MainActivity;
@@ -16,8 +16,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainController {
 
@@ -59,14 +57,7 @@ public class MainController {
     }
 
     private void makeApiCall(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        RecipeAPI recipeAPI = retrofit.create(RecipeAPI.class);
-
-        Call<RestRecipesResponse> call = recipeAPI.getRecipesResponse(
+        Call<RestRecipesResponse> call = Singletons.getRecipeAPI().getRecipesResponse(
                 Constants.API_KEY,
                 10,
                 "french");

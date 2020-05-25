@@ -1,6 +1,5 @@
 package com.example.lesrecetteslespluschaudesdetaregion.presentation.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -9,9 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lesrecetteslespluschaudesdetaregion.R;
+import com.example.lesrecetteslespluschaudesdetaregion.Singletons;
 import com.example.lesrecetteslespluschaudesdetaregion.presentation.controller.MainController;
 import com.example.lesrecetteslespluschaudesdetaregion.presentation.model.Recipes;
-import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -31,10 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         mainController = new MainController(
                 this,
-                new GsonBuilder()
-                        .setLenient()
-                        .create(),
-                getSharedPreferences("app_recipes", Context.MODE_PRIVATE)
+                Singletons.getGson(),
+            Singletons.getSharedPreference(getApplicationContext())
         );
         mainController.onStart();
     }
