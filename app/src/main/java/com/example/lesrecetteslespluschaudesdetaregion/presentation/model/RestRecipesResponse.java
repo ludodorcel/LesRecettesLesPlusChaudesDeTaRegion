@@ -1,4 +1,4 @@
-package com.example.lesrecetteslespluschaudesdetaregion;
+package com.example.lesrecetteslespluschaudesdetaregion.presentation.model;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ public class RestRecipesResponse {
     private Integer number; // nb results returned
     private Integer preparationTime; // in minutes
     private Integer servings; // nb of servings
+    private String imageUrls; // URL of the image
     private List<Recipes> results;
 
     public Integer getOffset() {
@@ -27,6 +28,10 @@ public class RestRecipesResponse {
 
     public List<Recipes> getResults() {
         return results;
+    }
+
+    public String getImageUrls() {
+        return imageUrls;
     }
 
     public RestRecipesResponse() {

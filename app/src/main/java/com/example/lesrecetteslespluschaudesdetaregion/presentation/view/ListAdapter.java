@@ -1,4 +1,4 @@
-package com.example.lesrecetteslespluschaudesdetaregion;
+package com.example.lesrecetteslespluschaudesdetaregion.presentation.view;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.lesrecetteslespluschaudesdetaregion.R;
+import com.example.lesrecetteslespluschaudesdetaregion.presentation.model.Recipes;
 
 import java.util.List;
 

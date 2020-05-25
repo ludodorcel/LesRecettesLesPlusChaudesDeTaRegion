@@ -1,4 +1,4 @@
-package com.example.lesrecetteslespluschaudesdetaregion;
+package com.example.lesrecetteslespluschaudesdetaregion.presentation.model;
 
 public class Recipes {
     private String title;
