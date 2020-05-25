@@ -44,14 +44,21 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
-
         // define an adapter
-        mAdapter = new ListAdapter(recipesList);
+        mAdapter = new ListAdapter(recipesList, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Recipes recipes) {
+                mainController.onItemClick(recipes);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 
     public void showError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
+    }
+
+    public void navigateToDetails(Recipes recipes){
+        Toast.makeText(getApplicationContext(), "NAV", Toast.LENGTH_SHORT).show();
     }
 }
