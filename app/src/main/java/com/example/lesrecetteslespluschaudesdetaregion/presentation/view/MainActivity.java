@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void navigateToDetails(Recipes recipes){
         Intent myIntent = new Intent(MainActivity.this, RecipesDetailActivity.class);
+        myIntent.putExtra("recipeKey", Singletons.getGson().toJson(recipes));
         MainActivity.this.startActivity(myIntent);
     }
+
+
 }

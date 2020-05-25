@@ -14,7 +14,7 @@ public class Recipes {
         return title;
     }
 
-    public String getUrl_Image() {
+    public String getImageUrls() {
         return imageUrls;
     }
 
