@@ -2,7 +2,7 @@ package com.example.lesrecetteslespluschaudesdetaregion;
 
 public class Recipes {
     private String title;
-    private String url_Image;
+    private String imageUrls;
     private Integer id;
     private Integer readyInMinutes;
     private Integer servings;
@@ -15,7 +15,7 @@ public class Recipes {
     }
 
     public String getUrl_Image() {
-        return url_Image;
+        return imageUrls;
     }
 
     public Integer getId() {

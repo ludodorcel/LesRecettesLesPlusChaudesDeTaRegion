@@ -1,5 +1,7 @@
 package com.example.lesrecetteslespluschaudesdetaregion;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -24,12 +26,20 @@ public class MainActivity extends AppCompatActivity {
     private ListAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private static final String BASE_URL = "https://api.spoonacular.com";
+    private SharedPreferences sharedPreferences;
+    private Gson gson;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = getSharedPreferences("app_recipes", Context.MODE_PRIVATE);
+
+        gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
         makeApiCall();
     }
@@ -51,9 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void makeApiCall(){
         String apiKey = "c150fb2f36ec4c33b035b3aebfd887f8";
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         RecipeAPI recipeAPI = retrofit.create(RecipeAPI.class);
 
         Call<RestRecipesResponse> call = recipeAPI.getRecipesResponse(
-                "c150fb2f36ec4c33b035b3aebfd887f8",
+                apiKey,
                 10,
                 "french");
 
@@ -72,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<RestRecipesResponse> call, Response<RestRecipesResponse> response) {
                 if(response.isSuccessful() && response.body() != null) {
                     List<Recipes> recipesList = (List<Recipes>) response.body().getResults();
-                    Toast.makeText(getApplicationContext(), "API Success", Toast.LENGTH_SHORT).show();
+
+                    saveList(recipesList);
                     showList(recipesList);
                     //changesList.forEach(change -> System.out.println(change.subject));
                 } else {
@@ -85,6 +93,17 @@ public class MainActivity extends AppCompatActivity {
                 showError();
             }
         });
+    }
+
+    private void saveList(List<Recipes> recipesList) {
+        String jsonString = gson.toJson(recipesList);
+
+        sharedPreferences
+                .edit()
+                .putString("jsonRecipesList", jsonString)
+                .apply();
+
+        Toast.makeText(getApplicationContext(), "Data Saved !!", Toast.LENGTH_SHORT).show();
     }
 
     private void showError() {
