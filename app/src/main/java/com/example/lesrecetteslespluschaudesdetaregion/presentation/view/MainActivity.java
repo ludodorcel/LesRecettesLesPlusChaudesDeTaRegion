@@ -1,5 +1,6 @@
 package com.example.lesrecetteslespluschaudesdetaregion.presentation.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navigateToDetails(Recipes recipes){
-        Toast.makeText(getApplicationContext(), "NAV", Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(MainActivity.this, RecipesDetailActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 }
