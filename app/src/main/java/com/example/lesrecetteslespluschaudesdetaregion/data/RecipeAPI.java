@@ -1,4 +1,6 @@
-package com.example.lesrecetteslespluschaudesdetaregion;
+package com.example.lesrecetteslespluschaudesdetaregion.data;
+
+import com.example.lesrecetteslespluschaudesdetaregion.presentation.model.RestRecipesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
