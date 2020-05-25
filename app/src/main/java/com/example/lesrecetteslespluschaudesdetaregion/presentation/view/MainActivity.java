@@ -1,5 +1,6 @@
 package com.example.lesrecetteslespluschaudesdetaregion.presentation.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -44,14 +45,22 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
-
         // define an adapter
-        mAdapter = new ListAdapter(recipesList);
+        mAdapter = new ListAdapter(recipesList, new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Recipes recipes) {
+                mainController.onItemClick(recipes);
+            }
+        });
         recyclerView.setAdapter(mAdapter);
     }
 
     public void showError() {
         Toast.makeText(getApplicationContext(), "API Error", Toast.LENGTH_SHORT).show();
+    }
+
+    public void navigateToDetails(Recipes recipes){
+        Intent myIntent = new Intent(MainActivity.this, RecipesDetailActivity.class);
+        MainActivity.this.startActivity(myIntent);
     }
 }

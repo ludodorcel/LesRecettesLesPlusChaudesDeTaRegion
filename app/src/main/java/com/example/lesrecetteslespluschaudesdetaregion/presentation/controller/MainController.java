@@ -53,7 +53,7 @@ public class MainController {
     }
 
     public void onItemClick(Recipes recipes){
-
+        view.navigateToDetails(recipes);
     }
 
     private void makeApiCall(){
