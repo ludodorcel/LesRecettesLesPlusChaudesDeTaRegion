@@ -3,6 +3,7 @@ package com.example.lesrecetteslespluschaudesdetaregion.presentation.view;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lesrecetteslespluschaudesdetaregion.R;
 import com.example.lesrecetteslespluschaudesdetaregion.presentation.model.Recipes;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -26,12 +28,14 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         public TextView txtHeader;
         public TextView txtFooter;
         public View layout;
+        public ImageView imgView;
 
         public ViewHolder(View v) {
             super(v);
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
+            imgView = (ImageView) v.findViewById(R.id.icon);
         }
     }
 
@@ -73,6 +77,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         final Recipes currentRecipes = values.get(position);
         holder.txtHeader.setText(currentRecipes.getTitle());
         holder.txtFooter.setText(currentRecipes.getPreparationTime()+" min,  "+currentRecipes.getServings()+" servings");
+        Picasso.get().load("https://spoonacular.com/recipeImages/"+currentRecipes.getId()+"-90x90.jpg").into(holder.imgView);
 
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -88,6 +93,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public int getItemCount() {
         return values.size();
     }
+
 
 }
 

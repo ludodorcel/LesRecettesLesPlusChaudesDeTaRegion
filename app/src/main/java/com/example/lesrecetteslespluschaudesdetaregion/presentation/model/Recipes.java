@@ -2,7 +2,6 @@ package com.example.lesrecetteslespluschaudesdetaregion.presentation.model;
 
 public class Recipes {
     private String title;
-    private String imageUrls;
     private Integer id;
     private Integer readyInMinutes;
     private Integer servings;
@@ -12,10 +11,6 @@ public class Recipes {
 
     public String getTitle() {
         return title;
-    }
-
-    public String getUrl_Image() {
-        return imageUrls;
     }
 
     public Integer getId() {
