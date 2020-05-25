@@ -49,7 +49,7 @@ public class Singletons {
     public static RecipeDetailsAPI getRecipeDetailsAPI(){
         if (recipeDetailsAPIInstance == null){
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(Constants.BASE_URL)
+                    .baseUrl(Constants.INFORMATION_URL)
                     .addConverterFactory(GsonConverterFactory.create(getGson()))
                     .build();
 
